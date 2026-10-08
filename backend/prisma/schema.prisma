@@ -4,10 +4,53 @@
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
   output   = "../generated/prisma"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
+}
+
+model Usuario {
+  id        Int      @id @default(autoincrement())
+  nome      String
+  email     String   @unique
+  senha     String
+  perfil    Perfil   @default(MORADOR)
+  criado_em DateTime @default(now())
+
+  @@map("usuarios")
+}
+
+model Ecoponto {
+  id         Int      @id @default(autoincrement())
+  nome       String
+  latitude   String
+  longitude  String
+  descricao  String?
+  cep        String?
+  logradouro String?
+  numero     String?
+  bairro     String?
+  cidade     String?
+  uf         String?
+  nona       Int?
+  criado_em  DateTime @default(now())
+  lixeiras[] 
+
+  @@map("ecopontos")
+}
+
+model Lixeira {
+  id          Int      @id @default(autoincrement())
+  uuid_sensor String
+  tipo        Tipo
+  volume_max  Int
+  nivel_cheio Int
+  ecoponto_id Int
+  criado_em   DateTime @default(now())
+  ecoponto    Ecoponto @relation(fields: [ecoponto_id], references: [id], onDelete: Cascade)
+
+  @@map("lixeiras")
 }
