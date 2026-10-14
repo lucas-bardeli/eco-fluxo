@@ -24,7 +24,7 @@ model Usuario {
 }
 
 model Ecoponto {
-  id         Int      @id @default(autoincrement())
+  id         Int       @id @default(autoincrement())
   nome       String
   latitude   String
   longitude  String
@@ -36,21 +36,48 @@ model Ecoponto {
   cidade     String?
   uf         String?
   nona       Int?
-  criado_em  DateTime @default(now())
-  lixeiras[] 
+  criado_em  DateTime  @default(now())
+  lixeiras   Lixeira[]
 
   @@map("ecopontos")
 }
 
 model Lixeira {
-  id          Int      @id @default(autoincrement())
-  uuid_sensor String
-  tipo        Tipo
-  volume_max  Int
-  nivel_cheio Int
-  ecoponto_id Int
-  criado_em   DateTime @default(now())
-  ecoponto    Ecoponto @relation(fields: [ecoponto_id], references: [id], onDelete: Cascade)
+  id           Int           @id @default(autoincrement())
+  ecoponto_id  Int
+  uuid_sensor  String
+  tipo         Tipo
+  volume_max   Int
+  nivel_cheio  Int
+  criado_em    DateTime      @default(now())
+  ecoponto     Ecoponto      @relation(fields: [ecoponto_id], references: [id], onDelete: Cascade)
+  notificacoes Notificacao[]
 
   @@map("lixeiras")
+}
+
+model Notificacao {
+  id         Int      @id @default(autoincrement())
+  lixeira_id Int
+  titulo     String
+  mensagem   String
+  lida       Boolean
+  criado_em  DateTime @default(now())
+  lixeira    Lixeira  @relation(fields: [lixeira_id], references: [id], onDelete: Cascade)
+
+  @@index([lixeira_id], map: "notificacoes_lixeira_id_fkey")
+  @@map("notificacoes")
+}
+
+enum Perfil {
+  MORADOR
+  GESTOR
+}
+
+enum Tipo {
+  PLASTICO
+  VIDRO
+  PAPEL
+  METAL
+  ORGANICO
 }
