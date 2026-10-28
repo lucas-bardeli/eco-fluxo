@@ -35,7 +35,7 @@ model Ecoponto {
   bairro     String?
   cidade     String?
   uf         String?
-  nona       Int?
+  nota       Int?
   criado_em  DateTime  @default(now())
   lixeiras   Lixeira[]
 

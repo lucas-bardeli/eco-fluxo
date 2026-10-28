@@ -24,7 +24,7 @@ CREATE TABLE `ecopontos` (
     `bairro` VARCHAR(191) NULL,
     `cidade` VARCHAR(191) NULL,
     `uf` VARCHAR(191) NULL,
-    `nona` INTEGER NULL,
+    `nota` INTEGER NULL,
     `criado_em` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     PRIMARY KEY (`id`)
