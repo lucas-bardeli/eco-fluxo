@@ -13,12 +13,14 @@ datasource db {
 }
 
 model Usuario {
-  id        Int      @id @default(autoincrement())
-  nome      String
-  email     String   @unique
-  senha     String
-  perfil    Perfil   @default(MORADOR)
-  criado_em DateTime @default(now())
+  id                 Int       @id @default(autoincrement())
+  nome               String
+  email              String    @unique
+  senha              String
+  perfil             Perfil    @default(MORADOR)
+  login_code         String?
+  login_code_expires DateTime?
+  criado_em          DateTime  @default(now())
 
   @@map("usuarios")
 }
