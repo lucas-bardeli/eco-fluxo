@@ -9,9 +9,10 @@ const ecopontoRoutes = Router();
 
 ecopontoRoutes.post(
   "/",
-  autenticacaoToken,
-  autorizacaoPerfil("GESTOR"),
+  // autenticacaoToken,
+  // autorizacaoPerfil("GESTOR"),
   EcopontoController.create,
 );
+ecopontoRoutes.get("/", EcopontoController.findAll);
 
 export default ecopontoRoutes;

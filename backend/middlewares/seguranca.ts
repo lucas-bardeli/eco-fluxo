@@ -1,9 +1,8 @@
 import type { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
+import type { Perfil } from "@prisma/client";
 
 const JWT_SECRET = process.env.JWT_SECRET || "sua_chave_super_secreta";
-
-type Perfil = "MORADOR" | "GESTOR";
 
 export interface UsuarioPayload {
   id: number;
