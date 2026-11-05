@@ -10,5 +10,8 @@
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "skipLibCheck": true
+  },
+  "ts-node": {
+    "experimentalResolver": true
   }
 }
