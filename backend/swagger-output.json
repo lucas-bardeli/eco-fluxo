@@ -13,7 +13,21 @@
   "paths": {
     "/ecopontos/": {
       "post": {
+        "tags": [
+          "Ecopontos"
+        ],
+        "summary": "Cria um ecoponto",
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Ecoponto"
+            }
+          }
+        ],
         "responses": {
           "default": {
             "description": ""
@@ -21,6 +35,10 @@
         }
       },
       "get": {
+        "tags": [
+          "Ecopontos"
+        ],
+        "summary": "Lista os ecopontos",
         "description": "",
         "responses": {
           "200": {
@@ -31,7 +49,21 @@
     },
     "/lixeiras/": {
       "post": {
+        "tags": [
+          "Lixeiras"
+        ],
+        "summary": "Cria uma lixeira",
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Lixeira"
+            }
+          }
+        ],
         "responses": {
           "default": {
             "description": ""
@@ -39,6 +71,10 @@
         }
       },
       "get": {
+        "tags": [
+          "Lixeiras"
+        ],
+        "summary": "Lista as lixeiras",
         "description": "",
         "responses": {
           "200": {
@@ -76,6 +112,94 @@
           }
         }
       }
+    }
+  },
+  "definitions": {
+    "Ecoponto": {
+      "type": "object",
+      "properties": {
+        "nome": {
+          "type": "string",
+          "example": "Ecoponto Central"
+        },
+        "latitude": {
+          "type": "string",
+          "example": "-23.5505"
+        },
+        "longitude": {
+          "type": "string",
+          "example": "-46.6333"
+        },
+        "descricao": {
+          "type": "string",
+          "example": "Ponto de coleta no centro"
+        },
+        "cep": {
+          "type": "string",
+          "example": "01000-000"
+        },
+        "logradouro": {
+          "type": "string",
+          "example": "Rua Exemplo"
+        },
+        "numero": {
+          "type": "string",
+          "example": "100"
+        },
+        "bairro": {
+          "type": "string",
+          "example": "Centro"
+        },
+        "cidade": {
+          "type": "string",
+          "example": "São Paulo"
+        },
+        "uf": {
+          "type": "string",
+          "example": "SP"
+        },
+        "nota": {
+          "type": "number",
+          "example": 5
+        }
+      },
+      "required": [
+        "nome",
+        "latitude",
+        "longitude"
+      ]
+    },
+    "Lixeira": {
+      "type": "object",
+      "properties": {
+        "ecoponto_id": {
+          "type": "number",
+          "example": 1
+        },
+        "uuid_sensor": {
+          "type": "string",
+          "example": "sensor-001"
+        },
+        "tipo": {
+          "type": "string",
+          "example": "PLASTICO"
+        },
+        "volume_max": {
+          "type": "number",
+          "example": 100
+        },
+        "nivel_cheio": {
+          "type": "number",
+          "example": 80
+        }
+      },
+      "required": [
+        "ecoponto_id",
+        "uuid_sensor",
+        "tipo",
+        "volume_max",
+        "nivel_cheio"
+      ]
     }
   }
 }

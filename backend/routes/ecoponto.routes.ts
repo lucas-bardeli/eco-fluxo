@@ -11,8 +11,24 @@ ecopontoRoutes.post(
   "/",
   // autenticacaoToken,
   // autorizacaoPerfil("GESTOR"),
-  EcopontoController.create,
+  (req, res) => {
+    /* #swagger.tags = ['Ecopontos'] */
+    /* #swagger.summary = 'Cria um ecoponto' */
+    /* #swagger.parameters['body'] = {
+      in: 'body',
+      required: true,
+      schema: { $ref: '#/definitions/Ecoponto' }
+    } */
+
+    return EcopontoController.create(req, res);
+  },
 );
-ecopontoRoutes.get("/", EcopontoController.findAll);
+
+ecopontoRoutes.get("/", (req, res) => {
+  /* #swagger.tags = ['Ecopontos'] */
+  /* #swagger.summary = 'Lista os ecopontos' */
+
+  return EcopontoController.findAll(req, res);
+});
 
 export default ecopontoRoutes;

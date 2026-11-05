@@ -2,6 +2,27 @@
 
 Sistema Eco Fluxo. Projeto desenvolvido nas aulas de Laboratório de Desenvolvimento Web.
 
+### Swagger
+
+- Documentação interativa da API disponível em `http://localhost:5000/docs` quando o backend está em execução.
+- Com schemas reutilizáveis em `definitions` e tags + summaries nas rotas.
+
+Exemplo do create de ecoponto:
+
+```ts
+(req, res) => {
+  /* #swagger.tags = ['Ecopontos'] */
+  /* #swagger.summary = 'Cria um ecoponto' */
+  /* #swagger.parameters['body'] = {
+    in: 'body',
+    required: true,
+    schema: { $ref: '#/definitions/Ecoponto' }
+  } */
+
+  return EcopontoController.create(req, res);
+},
+```
+
 ### Comandos Prisma:
 
 ```bash
